@@ -40,12 +40,10 @@ if __name__ == '__main__':
     else:
         Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
         Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
-        Lista2 = ['ABEV3.SA','ODPV3.SA','TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','BOVA11.SA']
-        Lista_Aux2 = ['AMBEV','ODONTOPREV','TIM','VIVO','PETROVRAS','BBRASIL','CEMIG','BOVA']
+        Lista2 = ['ABEV3.SA','ODPV3.SA','TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA','BOVA11.SA']
+        Lista_Aux2 = ['AMBEV','ODONTOPREV','TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE','BOVA']
         Lista3 = ['AMER3.SA','MGLU3.SA']
         Lista_Aux3 = ['AMERICANAS','MAGALU']
     
-#    AcoesGol.acoesGol()
-
     a = AcoesGeral(Lista2,Lista_Aux2)
     a.acoesGeral()

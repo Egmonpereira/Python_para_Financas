@@ -12,11 +12,14 @@ class AcoesGeral(object):
         self.Lista = Lista
         self.Lista_Aux = Lista_Aux
     
+    def retorna(self):
+        return self.Lista, self.Lista_Aux
+    
     def acoesGeral(self):
         acoes_df = pd.DataFrame()
 
         for i in self.Lista:
-            acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01')['Close']
+            acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close']
         
         for i in range(len(self.Lista)):
             acoes_df = acoes_df.rename(columns={self.Lista[i]: self.Lista_Aux[i]})
