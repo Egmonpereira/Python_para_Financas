@@ -13,10 +13,14 @@ import matplotlib.pyplot as plt
 if __name__ == '__main__':
     os.system('clear')
 
-#    Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
-#    Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
-    Lista = ['ABEV3.SA','ODPV3.SA','TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA','BOVA11.SA']
-    Lista_Aux = ['AMBEV','ODONTOPREV','TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE','BOVA']
+    Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
+    Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
+
+#    Lista = ['TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA']
+#    Lista_Aux = ['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE']
+
+#    Lista = ['ABEV3.SA','ODPV3.SA','VIVT3.SA','PETR3.SA','BBAS3.SA','BOVA11.SA']
+#    Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
 
 
     dataset = pd.read_csv('/home/egmon/Yandex/Programação/Python/Udemy/Python/Python_para_Financas/acoesGeral.csv')
@@ -69,10 +73,10 @@ if __name__ == '__main__':
     
     print(retorno_anual * 100)
     
-    Pesos_Carteira1 = np.array([0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.0])
+    Pesos_Carteira1 = np.array([0.2,0.2,0.2,0.2,0.2,0.0])
     print('Carteira sem a BOVA',np.dot(retorno_anual * 100,Pesos_Carteira1))    
     
-    Pesos_Carteira2 = np.array([0.1,0.1,0.2,0.1,0.1,0.1,0.1,0.1,0.1])
+    Pesos_Carteira2 = np.array([0.1,0.2,0.2,0.2,0.1,0.2])
     print('Carteira com a BOVA',np.dot(retorno_anual * 100,Pesos_Carteira2))
     
     dataset = pd.read_csv('acoesGeral.csv')

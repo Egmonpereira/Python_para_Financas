@@ -13,16 +13,20 @@ from scipy import stats
 if __name__ == '__main__':
     os.system('clear')
 
-#    Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
-#    Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
-    Lista = ['ABEV3.SA','ODPV3.SA','TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA','BOVA11.SA']
-    Lista_Aux = ['AMBEV','ODONTOPREV','TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE','BOVA']
+    Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
+    Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
+
+#    Lista = ['TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA']
+#    Lista_Aux = ['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE']
+
+#    Lista = ['ABEV3.SA','ODPV3.SA','VIVT3.SA','PETR3.SA','BBAS3.SA','BOVA11.SA']
+#    Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
     
     Retorno = []
     print('Taxa de retorno no ano')
     dataset = pd.read_csv('acoesGeral.csv')
     
-    acao = 'VALE'
+    acao = 'GOL'
     
     print('2015:\n',dataset[acao][dataset['Date'] == '2015-01-02'], '\n',dataset[acao][dataset['Date'] == '2015-12-30'])
     Retorno.append(np.log(13.5 / 15.2) * 100)
@@ -84,7 +88,7 @@ if __name__ == '__main__':
     plt.show()
     
     print('\nRisco de um Portifólio')
-    taxas_Retorno_Simples_Gol_CVC = taxas_Retorno_Simples.drop(columns=['AMBEV','ODONTOPREV','TIM','VIVO','PETROBRAS','BBRASIL','CEMIG'])
+    taxas_Retorno_Simples_Gol_CVC = taxas_Retorno_Simples.drop(columns=['WEGE','MAGALU','TOTS','BOVA'])
     print(taxas_Retorno_Simples_Gol_CVC)
     print(taxas_Retorno_Simples_Gol_CVC.cov())
     print(taxas_Retorno_Simples_Gol_CVC.cov() * 246)
@@ -96,7 +100,7 @@ if __name__ == '__main__':
     print(desvio_Padrao)
         
     print('\nRisco de um Portifólio para toda a Carteira')
-    Pesos_Carteira1 = np.array([0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.0])
+    Pesos_Carteira1 = np.array([0.2,0.2,0.2,0.2,0.2,0.0])
     print(taxas_Retorno_Simples.cov() * 246)
     aux = np.dot(taxas_Retorno_Simples.cov() * 246, Pesos_Carteira1)
     print('\nVariância do Portifólio 01\n',aux)
@@ -105,7 +109,7 @@ if __name__ == '__main__':
     volatilidade_Portifolio1 = math.sqrt(variancia_port1)
     print(volatilidade_Portifolio1 * 100)
     
-    Pesos_Carteira2 = np.array([0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0])
+    Pesos_Carteira2 = np.array([0.0,0.0,0.0,0.0,0.0,1.0])
     aux = np.dot(taxas_Retorno_Simples.cov() * 246, Pesos_Carteira2)
     print('\nVariância do Portifólio 02\n',aux)
     variancia_port2 = np.dot(Pesos_Carteira2,aux)

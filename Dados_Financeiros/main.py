@@ -40,10 +40,12 @@ if __name__ == '__main__':
     else:
         Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
         Lista_Aux = ['GOL','CVC','WEGE','MAGALU','TOTS','BOVA']
-        Lista2 = ['ABEV3.SA','ODPV3.SA','TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA','BOVA11.SA']
-        Lista_Aux2 = ['AMBEV','ODONTOPREV','TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE','BOVA']
-        Lista3 = ['AMER3.SA','MGLU3.SA']
-        Lista_Aux3 = ['AMERICANAS','MAGALU']
-    
-    a = AcoesGeral(Lista2,Lista_Aux2)
+
+    #    Lista = ['TIMB','VIVT3.SA','PETR3.SA','BBAS3.SA','CMIG4.SA','VALE3.SA']
+    #    Lista_Aux = ['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE']
+
+    #    Lista = ['ABEV3.SA','ODPV3.SA','VIVT3.SA','PETR3.SA','BBAS3.SA','BOVA11.SA']
+    #    Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
+        
+    a = AcoesGeral(Lista,Lista_Aux)
     a.acoesGeral()
