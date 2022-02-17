@@ -1,18 +1,23 @@
+from sharpe_ratio import Sharpe_ratio
 import os 
 import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
 import plotly.express as px 
-import random
 
-def alocacao_ativos(dataset, grana, seed = 0):
+
+def alocacao_ativos(dataset, grana, seed = 0, melhores_pesos = []):
     dataset = dataset.copy()
     
     if seed != 0:
         np.random.seed(seed)
-    pesos = np.random.random(len(dataset.columns)-1)
-    pesos = pesos / pesos.sum()
-    print(pesos,pesos.sum())
+        
+    if len(melhores_pesos) > 0:
+        pesos = melhores_pesos
+    else:
+        pesos = np.random.random(len(dataset.columns)-1)
+        pesos = pesos / pesos.sum()
+        #print(pesos,pesos.sum())
     
     colunas = dataset.columns[1:]
     for i in colunas:
@@ -36,15 +41,21 @@ def alocacao_ativos(dataset, grana, seed = 0):
     print(dataset, datas, acoes_pesos, '\n',dataset.loc[len(dataset) - 1]['Soma valor'])
     
     figura = px.line(x = datas, y = dataset['Taxa de Retorno'], title = 'Retorno diário do Portifólio')
-    figura.show()
+    #figura.show()
     
     figura = px.line(title='Evolução do Patrimônio')
     for i in dataset.columns:
         figura.add_scatter(x = datas, y = dataset[i], name = i)
-    figura.show()
+    #figura.show()
     
     figura = px.line(x = datas, y = dataset['Soma valor'], title = 'Retorno diário do Portifólio')
-    figura.show()
+    #figura.show()
+    
+    print(dataset.loc[len(dataset) - 1]['Soma valor'] / dataset.loc[0]['Soma valor'] - 1)
+    
+    print()
+    
+    print(dataset['Taxa de Retorno'].std())
     
     
 if __name__ == '__main__':
@@ -57,8 +68,12 @@ if __name__ == '__main__':
 #    Lista_Aux = ['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE']
 
 #    Lista = ['ABEV3.SA','ODPV3.SA','VIVT3.SA','PETR3.SA','BBAS3.SA','BOVA11.SA']
-#    Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
 
+#    Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
     dataset = pd.read_csv('acoesGeral.csv')
     
-    alocacao_ativos(dataset,5000,10)
+    alocacao_ativos(dataset,5000,10,[])
+    
+    #alocação com Markowitz
+    s = Sharpe_ratio(pd.read_csv('acoes.csv'), 5000, taxa_se, 30)
+    s.alocacao_portifolio()
