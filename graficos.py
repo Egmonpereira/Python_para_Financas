@@ -1,4 +1,5 @@
 from mailbox import mbox
+from unicodedata import name
 import pandas as pd 
 import numpy as np 
 import plotly.express as px
@@ -19,7 +20,7 @@ class Graficos(object):
                 
                 i = 1
                 for i in np.arange(1, len(self.acoes_df.columns)):
-#                    plt.figure(figsize=(50,10))
+                #plt.figure(figsize=(50,10))
                     plt.subplot(7,1,i + 1)
                     sns.histplot(self.acoes_df[self.acoes_df.columns[i]], kde = True)
                     plt.title(self.acoes_df.columns[i])
@@ -27,7 +28,7 @@ class Graficos(object):
 
                 i = 1
                 for i in np.arange(1, len(self.acoes_df.columns)):
-#                    plt.figure(figsize=(50,10))
+                #plt.figure(figsize=(50,10))
                     plt.subplot(7,1,i + 1)
                     sns.boxplot(x = self.acoes_df[self.acoes_df.columns[i]])
                     plt.title(self.acoes_df.columns[i])
@@ -85,6 +86,9 @@ class Graficos(object):
         
                 figura = px.line(x = datas, y = self.acoes_df['Soma valor'], title = 'Retorno diário do Portifólio')
                 figura.show()
+        
+        else:
+            print("Nenhum gráfico exigido!")
 
 
 class Portifolio(object): 
@@ -115,4 +119,36 @@ class Grafico_Capm(object):
     def grafico_Capm(self):
         figura = px.scatter(self.dataset, x = 'BOVA', y = 'MAGALU', title = 'BOVA X MAGALU')
         figura.add_scatter(x = self.dataset['BOVA'], y = self.beta * self.dataset['BOVA'] + self.alpha)
+        figura.show()
+
+class Grafico_smc(object):
+    def __init__(self, dataset, Z, previsoes, dataset_acao, acao):
+        self.dataset = dataset
+        self.Z = Z
+        self.previsoes = previsoes
+        self.dataset_acao = dataset_acao
+        self.acao = acao
+
+    def grafico_smc(self):
+        figura = px.line(title = 'Histórico do preço das Ações')
+        for i in self.dataset.columns[1:]:
+            figura.add_scatter(x = self.dataset['Date'], y = self.dataset[i], name = i)
+        figura.show()
+
+        figura = px.line(title = 'Histórico do preço das Ações da ' + self.acao)
+        figura.add_scatter(x = self.dataset['Date'], y = self.dataset[self.acao], name = self.acao)
+        figura.show()
+
+        sns.histplot(self.Z)
+        #plt.show()
+
+    def grafico_previsoes(self):
+        figura = px.line(title = 'Previsões do preço das Ações - Monte Carlo - ' + self.acao)
+        for i in range(len(self.previsoes)):
+            figura.add_scatter(y = self.previsoes[i], name = i)
+        figura.show()
+
+    def grafico_simulacao(self):
+        figura = px.line(title = 'Simulação do preço das Ações da ' + self.acao)
+        figura.add_scatter(y = self.dataset_acao, name = 'Valor real')
         figura.show()

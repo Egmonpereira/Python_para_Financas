@@ -1,9 +1,6 @@
 from pandas_datareader import data
-import pandas as pd 
-import numpy as np 
-import plotly.express as px
 import seaborn as sns
-import matplotlib.pyplot as plt 
+import pandas as pd 
 
 from graficos import Graficos 
 
@@ -19,7 +16,7 @@ class AcoesGerais(object):
         acoes_df = pd.DataFrame()
 
         for i in self.Lista:
-            acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2022-11-03')['Close']
+            acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close']
         
         for i in range(len(self.Lista)):
             acoes_df = acoes_df.rename(columns={self.Lista[i]: self.Lista_Aux[i]})
@@ -31,8 +28,8 @@ class AcoesGerais(object):
         print(acoes_df.columns[1:])
         print(acoes_df.describe())
 
-        #sns.histplot(acoes_df['GOL'], kde=True)
-        #sns.boxplot(x = acoes_df['GOL'])
+#        sns.histplot(acoes_df['GOL'], kde=True)
+#        sns.boxplot(x = acoes_df['GOL'])
         
         acoes_df = pd.read_csv('acoesGerais.csv')
 
