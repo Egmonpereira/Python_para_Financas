@@ -1,4 +1,4 @@
-from clean import Clean
+from clean import Clean 
 
 class Dados(object):
     def __init__(self,s):

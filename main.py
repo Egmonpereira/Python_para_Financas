@@ -13,7 +13,7 @@ from taxa_retorno_acoes import Taxa_Retorno_Acoes
 from otimizacao_portifolio import Otimizacao_Portifolio
 from capm import Capm
 from simulacao_monte_carlo import Simulacao_Monte_Carlo
-from arima import Arima
+from arima import Arima 
 
 if __name__ == '__main__':
     Clean.clean('self')

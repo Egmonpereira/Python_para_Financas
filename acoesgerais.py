@@ -1,6 +1,6 @@
 from pandas_datareader import data
 import seaborn as sns
-import pandas as pd 
+import pandas as pd
 
 from graficos import Graficos 
 
