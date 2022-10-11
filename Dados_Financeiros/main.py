@@ -1,6 +1,7 @@
 #br.financas.yahoo.com
 
 import pandas
+
 from datetime import date
 from clean import Clean
 from dados import Dados
