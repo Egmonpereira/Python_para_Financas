@@ -16,6 +16,7 @@ from simulacao_monte_carlo import Simulacao_Monte_Carlo
 from arima import Arima
 from facebookprophet import Fbprophet
 from classifica_empresas import Classifica_Empresas
+from agrupamento_empresas import Agrupamento_Empresas
 
 if __name__ == '__main__':
     Clean.clean('self')
@@ -26,10 +27,10 @@ if __name__ == '__main__':
 
     try:       
         a = AcoesGerais(Lista,Lista_Aux)
-        with open('Data.txt', 'r') as Data:
+        with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
             data = Data.read()
         if data != str(date.today()):
-            with open('Data.txt', 'w') as Data:
+            with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
             
             print("Importando dados das Acoes\n ",Lista_Aux)
@@ -61,7 +62,7 @@ if __name__ == '__main__':
 
         try:
             print('\nSharpe Ratio')
-            execs = 1#int(input('Número de Execuções: '))
+            execs = 1#30#int(input('Número de Execuções: '))
             e = Alocacao_Otimizacao(pandas.read_csv('Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100, execs)
             melhor_sharpe_ratio, melhores_pesos, Lista_retorno_esperado, Lista_volatividade_esperada, Lista_sharpe_ratio, melhor_volatilidade, melhor_retorno = e.alocacao_portifolio()
         except:
@@ -110,5 +111,10 @@ if __name__ == '__main__':
 
     try:
         C = Classifica_Empresas().classifica_empresas()
+    except Exception as erro:
+        print(erro)
+
+    try:
+        A = Agrupamento_Empresas().agrupamento_empresas()
     except Exception as erro:
         print(erro)

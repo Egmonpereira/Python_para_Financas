@@ -4,6 +4,7 @@ from classifica_empresas import Classifica_Empresas
 from dados import Dados
 from acoesgerais import AcoesGerais
 from datetime import date
+from agrupamento_empresas import Agrupamento_Empresas
 
 if __name__ == "__main__":
     Clean.clean('self')
@@ -14,10 +15,10 @@ if __name__ == "__main__":
     
     try:       
         a = AcoesGerais(Lista,Lista_Aux)
-        with open('Data.txt', 'r') as Data:
+        with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
             data = Data.read()
         if data != str(date.today()):
-            with open('Data.txt', 'w') as Data:
+            with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
             print("Importando dados das Acoes\n ",Lista_Aux)
             a.acoesGerais()
@@ -28,4 +29,5 @@ if __name__ == "__main__":
         print('Nenhuma Lista selecionada!')
 
     #Fbprophet(Lista, Lista_Aux, name, Sai).facebookprophet() 
-    Classifica_Empresas().classifica_empresas()
+    #Classifica_Empresas().classifica_empresas()
+    #Agrupamento_Empresas().agrupamento_empresas()
