@@ -5,6 +5,7 @@ from dados import Dados
 from acoesgerais import AcoesGerais
 from datetime import date
 from agrupamento_empresas import Agrupamento_Empresas
+from analise_sentimentos import Analise_Sentimentos
 
 if __name__ == "__main__":
     Clean.clean('self')
@@ -31,3 +32,4 @@ if __name__ == "__main__":
     #Fbprophet(Lista, Lista_Aux, name, Sai).facebookprophet() 
     #Classifica_Empresas().classifica_empresas()
     #Agrupamento_Empresas().agrupamento_empresas()
+    Analise_Sentimentos().analise_sentimentos()
