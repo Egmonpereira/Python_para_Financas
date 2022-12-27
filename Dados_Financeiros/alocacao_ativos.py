@@ -1,6 +1,7 @@
 import numpy as np 
 import pandas as pd
 from graficos import Graficos
+
 class Alocacao_Ativos(object):
     def __init__(self,dataset, dinheiro_total, melhores_pesos = []):
         self.dataset = dataset

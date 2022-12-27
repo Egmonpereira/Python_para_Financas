@@ -21,7 +21,7 @@ class Classifica_Empresas(object):
 
     def classifica_empresas(self):
         print('\n\nCARRGAMENTO E PRÉ-PROCESSAMENTO DA BASE DE DADOS\n')
-        dataset = pd.read_excel('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/BD_Completo.xlsx')
+        dataset = pd.read_excel('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/BD_Completo.xlsx')
         #print(sns.heatmap(dataset.isnull()))
         #plt.show()
         print(dataset.isnull())
@@ -244,7 +244,7 @@ class Classifica_Empresas(object):
 
         forest_neural()
 
-        with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/bases_classificacao.pkl', 'wb') as f:
+        with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/bases_classificacao.pkl', 'wb') as f:
             pickle.dump([dataset, dataset_original, X, y, empresa, scaler], f)
 
         print('EXERCICIO')

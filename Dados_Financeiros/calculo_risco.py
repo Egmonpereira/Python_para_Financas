@@ -17,7 +17,7 @@ class Calculo_Risco():
         print('\n:::CÁLCULO DE RISCO:::\n')
         Retorno = []
         print('Taxa de retorno no ano')
-        dataset = pd.read_csv('acoesGerais.csv')
+        dataset = pd.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         
         print('2015:\n',dataset[self.name][dataset['Date'] == '2015-01-02'], '\n',dataset[self.name][dataset['Date'] == '2015-12-30'])
         Retorno.append(np.log(13.5 / 15.2) * 100)
@@ -79,16 +79,19 @@ class Calculo_Risco():
         g.graficos()
                 
         print('\nRisco de um Portifólio')
-        taxas_Retorno_Simples_Gol_CVC = taxas_Retorno_Simples.drop(columns=self.Sai)
-        print(taxas_Retorno_Simples_Gol_CVC)
-        print(taxas_Retorno_Simples_Gol_CVC.cov())
-        print(taxas_Retorno_Simples_Gol_CVC.cov() * 246)
-        pesos = np.array([0.5,0.5])
-        aux = np.dot(taxas_Retorno_Simples_Gol_CVC.cov() * 246, pesos)
-        variancia = np.dot(aux, pesos)
-        print(variancia)
-        desvio_Padrao = math.sqrt(variancia)
-        print(desvio_Padrao)
+        try:
+            taxas_Retorno_Simples_Gol_CVC = taxas_Retorno_Simples.drop(columns=self.Sai)
+            print(taxas_Retorno_Simples_Gol_CVC)
+            print(taxas_Retorno_Simples_Gol_CVC.cov())
+            print(taxas_Retorno_Simples_Gol_CVC.cov() * 246)
+            pesos = np.array([0.5,0.5])
+            aux = np.dot(taxas_Retorno_Simples_Gol_CVC.cov() * 246, pesos)
+            variancia = np.dot(aux, pesos)
+            print(variancia)
+            desvio_Padrao = math.sqrt(variancia)
+            print(desvio_Padrao)
+        except Exception as erro:
+            print(erro)
             
         print('\nRisco de um Portifólio para toda a Carteira')
         Pesos_Carteira1 = np.array([0.2,0.2,0.2,0.2,0.2,0.0])
@@ -102,6 +105,7 @@ class Calculo_Risco():
         
         Pesos_Carteira2 = np.array([0.0,0.0,0.0,0.0,0.0,1.0])
         aux = np.dot(taxas_Retorno_Simples.cov() * 246, Pesos_Carteira2)
+        
         print('\nVariância do Portifólio 02\n',aux)
         variancia_port2 = np.dot(Pesos_Carteira2,aux)
         print(variancia_port2)

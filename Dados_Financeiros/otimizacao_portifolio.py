@@ -72,7 +72,7 @@ class Otimizacao_Portifolio(object):
 
             visualiza_alocacao(melhor_solucao)
             
-            sv1 = Alocacao_Ativos(pandas.read_csv('acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
+            sv1 = Alocacao_Ativos(pandas.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
             _, soma_valor, _, _, _, _  = sv1.alocacao_ativos()
             print('\nLucro Máximo: ',soma_valor)
             
@@ -90,7 +90,7 @@ class Otimizacao_Portifolio(object):
 
             visualiza_alocacao(pior_solucao)
             
-            sv2 = Alocacao_Ativos(pandas.read_csv('acoesGerais.csv'), 5000, melhores_pesos=pior_solucao)
+            sv2 = Alocacao_Ativos(pandas.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, melhores_pesos=pior_solucao)
             _, soma_valor, _, _, _, _  = sv2.alocacao_ativos()
 
             print('\nLucro Mínimo: ',soma_valor)
@@ -107,7 +107,7 @@ class Otimizacao_Portifolio(object):
 
             visualiza_alocacao(melhor_solucao)
             
-            sv1 = Alocacao_Ativos(pandas.read_csv('acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
+            sv1 = Alocacao_Ativos(pandas.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
             _, soma_valor, _, _, _, _  = sv1.alocacao_ativos()
             print('\nLucro Máximo: ',soma_valor)
 
@@ -125,7 +125,7 @@ class Otimizacao_Portifolio(object):
 
             visualiza_alocacao(melhor_solucao)
             
-            sv1 = Alocacao_Ativos(pandas.read_csv('acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
+            sv1 = Alocacao_Ativos(pandas.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, melhores_pesos = melhor_solucao)
             _, soma_valor, _, _, _, _  = sv1.alocacao_ativos()
             print('\nLucro Máximo: ',soma_valor)
 

@@ -13,7 +13,7 @@ class Agrupamento_Empresas(object):
 
     def agrupamento_empresas(self):
         print('\n\nPREPARAÇÃO DA BASE DE DADOS\n')
-        with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/bases_classificacao.pkl', 'rb') as f:
+        with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/bases_classificacao.pkl', 'rb') as f:
             dataset, dataset_original, X, y, empresa, scaler = pickle.load(f)
         print(dataset)
         print(dataset_original)

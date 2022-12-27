@@ -3,15 +3,12 @@ from prophet.plot import plot_plotly, plot_components_plotly
 import pandas
 
 class Fbprophet(object):
-    def __init__(self, Lista, Lista_Aux, name, Sai):
-        self.Lista = Lista
-        self.Lista_Aux = Lista_Aux
+    def __init__(self,name):
         self.name = name
-        self.Sai = Sai
 
     def facebookprophet(self):
-        print('\n:::FACEBOOK PROPHET EM AÇÃO::\n')
-        dataset = pandas.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv', usecols=['Date', self.name])
+        print('\n:::FACEBOOK PROPHET EM AÇÃO:::\n')
+        dataset = pandas.read_csv('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv', usecols=['Date', self.name])
         print(dataset)
         dataset = dataset[['Date', self.name]].rename(columns = {'Date': 'ds', self.name: 'y'})
         print(dataset)
@@ -31,7 +28,7 @@ class Fbprophet(object):
         
         modelo.plot_components(previsoes).show()
 
-        #plot_plotly(modelo, previsoes).show()
+        plot_plotly(modelo, previsoes).show()
 
         #plot_components_plotly(modelo, previsoes).show()
 

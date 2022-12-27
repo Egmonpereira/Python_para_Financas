@@ -26,21 +26,21 @@ class AcoesGerais(object):
         acoes_df.dropna(inplace=True)
         print(acoes_df.isnull().sum())
         print(acoes_df)
-        acoes_df.to_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
+        acoes_df.to_csv('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         print(acoes_df.columns[1:])
         print(acoes_df.describe())
 
 #        sns.histplot(acoes_df['GOL'], kde=True)
 #        sns.boxplot(x = acoes_df['GOL'])
         
-        acoes_df = pd.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
+        acoes_df = pd.read_csv('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
 
         acoes_df_normalizado = acoes_df.copy()
         for i in acoes_df_normalizado.columns[1:]:
             acoes_df_normalizado[i] = acoes_df_normalizado[i] / acoes_df_normalizado[i][0]
         print(acoes_df_normalizado)
 
-        g = Graficos('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesgerais',acoes_df)
+        g = Graficos('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesgerais',acoes_df)
         g.graficos()
 
         g = Graficos('normalizado', acoes_df_normalizado)

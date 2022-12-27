@@ -60,9 +60,6 @@ class Dados(object):
             '''            
         
         else:
-            with open('Data.txt', 'w') as Data:
-                Data.write(str('2015-01-01'))
-
             print('Escolha uma Lista:')
             print('Lista 1 = ',['GOL','CVC','WEGE','MAGALU','TOTS','BOVA'])
             print('Lista 2 = ',['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE'])

@@ -10,15 +10,17 @@ import time
 
 from wordcloud import WordCloud
 from spacy import displacy
+from pathlib import Path
+from agrupamento_empresas import Agrupamento_Empresas
 
 class Analise_Sentimentos(object):
     def __init__(self):
         pass
 
     def analise_sentimentos(self):
-
+        Agrupamento_Empresas().agrupamento_empresas()
         #Carregamento da base de dados
-        base = pd.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/stock_data.csv')
+        base = pd.read_csv('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/stock_data.csv')
         print(base.head())
         print(base.tail())
         print(np.unique(base['Sentiment'], return_counts=True))
@@ -92,7 +94,7 @@ class Analise_Sentimentos(object):
 
         #Extração de entidades nomeadas
         documento = pln(textos_positivos_string)
-        displacy.render(documento, style = 'ent', jupyter = True)
+        displacy.serve(documento, style = 'ent')
 
         empresas_positivas = []
         for entidade in documento.ents:
@@ -104,3 +106,5 @@ class Analise_Sentimentos(object):
         print(empresas_positivas)
 
         print('\nTempo: %0.2f' %((fim - inicio)/60))
+
+        return documento

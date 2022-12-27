@@ -1,6 +1,7 @@
 #br.financas.yahoo.com
 
 import pandas
+import time
 
 from datetime import date
 from clean import Clean
@@ -17,26 +18,26 @@ from arima import Arima
 from facebookprophet import Fbprophet
 from classifica_empresas import Classifica_Empresas
 from agrupamento_empresas import Agrupamento_Empresas
+from analise_sentimentos import Analise_Sentimentos
 
 if __name__ == '__main__':
+    inicio = time.time()
     Clean.clean('self')
 
     print('\n:::PRINCIPAL:::\n')
-    s = 'n'#input('Entrar com dados? S/N: ').lower()
-    Lista, Lista_Aux, name, Sai = Dados(s).dados()
-
     try:       
-        a = AcoesGerais(Lista,Lista_Aux)
-        with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
+        with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
             data = Data.read()
         if data != str(date.today()):
-            with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
+            #s = 's'#input('Entrar com dados? S/N: ').lower()
+            Lista, Lista_Aux, name, Sai = Dados('s').dados()
+            a = AcoesGerais(Lista,Lista_Aux)
+            with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
-            
             print("Importando dados das Acoes\n ",Lista_Aux)
-            a.acoesGerais()
         else:
-            print("Dados atualizados em",data)
+            Lista, Lista_Aux, name, Sai = Dados('n').dados()
+            print("Dados importados em",data)
     except Exception as erro:
         print(erro)
         print('Nenhuma Lista selecionada!')
@@ -94,13 +95,13 @@ if __name__ == '__main__':
 
     try:
         pass
-        #S = Simulacao_Monte_Carlo(Lista, Lista_Aux, name).smc()
+        S = Simulacao_Monte_Carlo(Lista, Lista_Aux, name).smc()
     except Exception as erro:
         print(erro)
         
     try:
         pass
-        #A = Arima(Lista, Lista_Aux, name, Sai).arima()
+        A = Arima(Lista, Lista_Aux, name, Sai).arima()
     except Exception as erro:
         print(erro)
 
@@ -118,3 +119,12 @@ if __name__ == '__main__':
         A = Agrupamento_Empresas().agrupamento_empresas()
     except Exception as erro:
         print(erro)
+
+    try:
+        A = Analise_Sentimentos().analise_sentimentos()
+    except Exception as erro:
+        print(erro)
+    fim = time.time()
+
+    with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/tempoExecucao.txt', 'w') as t:
+        t.write(str('Tempo: %0.2f' %((fim - inicio)/60)))

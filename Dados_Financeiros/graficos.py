@@ -16,28 +16,28 @@ class Graficos(object):
         if s == 's':
             if self.funcao == "acoesgerais":
                 self.acoes_df.plot(x = 'Date', title = 'Histórico do preço das ações')
-                plt.show()
+                #plt.show()
                 
                 i = 1
                 for i in np.arange(1, len(self.acoes_df.columns)):
-                #plt.figure(figsize=(50,10))
+                    plt.figure(figsize=(50,10))
                     plt.subplot(7,1,i + 1)
                     sns.histplot(self.acoes_df[self.acoes_df.columns[i]], kde = True)
                     plt.title(self.acoes_df.columns[i])
-                    plt.show()
+                    #plt.show()
 
                 i = 1
                 for i in np.arange(1, len(self.acoes_df.columns)):
-                #plt.figure(figsize=(50,10))
+                    plt.figure(figsize=(50,10))
                     plt.subplot(7,1,i + 1)
                     sns.boxplot(x = self.acoes_df[self.acoes_df.columns[i]])
                     plt.title(self.acoes_df.columns[i])
-                    plt.show()
+                    #plt.show()
 
         
             elif self.funcao == 'normalizado':        
                 self.acoes_df.plot(x = 'Date', title = 'Histórico do preço das ações - noramalizados')
-                plt.show()
+                #plt.show()
                 
             elif self.funcao == 'historico':
                 figura = px.line(title = 'Histórico do preço das ações')
@@ -55,7 +55,7 @@ class Graficos(object):
                 
             elif self.funcao == 'taxa normalizado':
                 self.acoes_df.plot(x = 'Date')
-                plt.show()
+                #plt.show()
                 
             elif self.funcao == 'comparativo':
                 figura = px.line(title = 'Comparativo Carteria BOVA')
@@ -71,7 +71,7 @@ class Graficos(object):
 
             elif self.funcao == 'calculo risco':
                 sns.heatmap(self.acoes_df.corr(), annot=True)
-                plt.show()
+                #plt.show()
 
             elif self.funcao == 'alocacao':
                 datas = self.acoes_df['Date']
@@ -89,6 +89,8 @@ class Graficos(object):
         
         else:
             print("Nenhum gráfico exigido!")
+        
+        plt.show()
 
 
 class Portifolio(object): 
@@ -140,7 +142,7 @@ class Grafico_smc(object):
         figura.show()
 
         sns.histplot(self.Z)
-        #plt.show()
+        plt.show()
 
     def grafico_previsoes(self):
         figura = px.line(title = 'Previsões do preço das Ações - Monte Carlo - ' + self.acao)
