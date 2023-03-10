@@ -1,12 +1,8 @@
 import pandas
 
 class Preparacao(object):
-    def __init__(self):
-        pass
-
-    
-    def preparacao(self):
-        dataset = pandas.read_csv('acoesGerais.csv')
+    def preparacao():
+        dataset = pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         print(dataset)
         
         dataset.drop(labels=['Date'], axis=1, inplace=True)

@@ -21,13 +21,13 @@ if __name__ == "__main__":
     #Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
 
     try:       
-        with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
+        with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
             data = Data.read()
         if data != str(date.today()):
             #s = 's'#input('Entrar com dados? S/N: ').lower()
             Lista, Lista_Aux, name, Sai = Dados('s').dados()
             a = AcoesGerais(Lista,Lista_Aux)
-            with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
+            with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
             print("Importando dados das Acoes\n ",Lista_Aux)
         else:
@@ -48,9 +48,15 @@ if __name__ == "__main__":
     print('Linha 48 - Tempo estimnado: 01:74')
     #Tratamento_classe().tratamento_classe()
     print('Linha 50 - Tempo estimnado: ')
-    Tratamento_classe().teste_fase()
+    #Tratamento_classe().teste_fase()
+    print('Linha 52 - Tempo estimnado: ')
+    c = Calculo_Risco(name,Sai)
+    taxa_selic_historico = c.calculo_risco()
+    Otimizacao_Portifolio(pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100)
+    AcoesGerais(Lista, Lista_Aux).acoesGerais()
+
 
     fim = time.time()
-    with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/tempoExecucao.txt', 'w') as t:
+    with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/tempoExecucao.txt', 'w') as t:
         t.write(str('Tempo: %0.2f' %((fim - inicio)/60)))
     print('Tempo: %0.2f' %((fim - inicio)/60))

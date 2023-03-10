@@ -8,9 +8,9 @@ from sklearn.metrics import mean_absolute_error
 from graficos import Grafico_smc
 
 class Simulacao_Monte_Carlo(object):
-    def __init__(self,Lista,Lista_Aux, name):
-        self.Lista_Aux = Lista_Aux
+    def __init__(self, Lista, Lista_Aux, name):
         self.Lista = Lista
+        self.Lista_Aux = Lista_Aux
         self.name = name
     
     def previsao(dataset, ativo, dias_frente, simulacoes):
@@ -45,13 +45,13 @@ class Simulacao_Monte_Carlo(object):
             previsoes[dia] = previsoes[dia - 1] * retorno_diario[dia]
 
         return previsoes.T, Z
-
     
-    def executa(dataset, Z, previsoes, Aux, Temp, dias_frente, i):   
-
-        dataset_acao = data.DataReader(name=Temp[i], data_source='yahoo', start='2020-11-04')['Close']
-        dataset_acao.to_csv('acao_teste.csv')
-        dataset_acao = pandas.read_csv('acao_teste.csv')
+    def executa(dataset, Z, previsoes, Aux, Temp, dias_frente, i):
+        print('Temp',Temp)
+        dataset_acao = data.DataReader(name = Temp[i], data_source='yahoo', start='2015-01-01')['Close']
+        print('dataset_acao\n',dataset_acao)
+        dataset_acao.to_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acao_teste.csv')
+        dataset_acao = pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acao_teste.csv')
 
         simulacao1 = previsoes[i][0:len(dataset_acao)]
         #print(dataset_acao[0:50]['Close'] - simulacao1)
@@ -74,7 +74,7 @@ class Simulacao_Monte_Carlo(object):
         #Grafico_smc(dataset, Z, previsoes, dataset_acao[0:dias_frente]['Close'], Aux[i]).grafico_simulacao()
         
     def smc(self):
-        dataset = pandas.read_csv('acoesGerais.csv')
+        dataset = pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
 
         t = 's'#input('Escolha a Ação a ser projetada sua previsão? ').lower()
         #Previsões para os próximos d dias a frente

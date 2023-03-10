@@ -28,7 +28,7 @@ class Capm(object):
             Ativos = pandas.DataFrame(Aux,columns=['Ações','CAPM'])
             print(Ativos)
 
-        P = Preparacao.preparacao(self)
+        P = Preparacao.preparacao()
         #Grafico_Capm(P).grafico_Capm()
 
         Aux = []

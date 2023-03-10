@@ -15,9 +15,10 @@ class Calculo_Risco():
     
     def calculo_risco(self):
         print('\n:::CÁLCULO DE RISCO:::\n')
+        print('self.name,self.Sai',self.name,self.Sai)
         Retorno = []
         print('Taxa de retorno no ano')
-        dataset = pd.read_csv('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
+        dataset = pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         
         print('2015:\n',dataset[self.name][dataset['Date'] == '2015-01-02'], '\n',dataset[self.name][dataset['Date'] == '2015-12-30'])
         Retorno.append(np.log(13.5 / 15.2) * 100)

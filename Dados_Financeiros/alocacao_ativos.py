@@ -87,7 +87,7 @@ class Alocacao_Ativos(object):
         taxa_retorno_historico = np.array([taxa_selic_2015, taxa_selic_2016, taxa_selic_2017, taxa_selic_2018, taxa_selic_2019, taxa_selic_2020])
         
         rendimentos = valor_2020 - self.dinheiro_total
-        print('\nRendimentos %.2f' %rendimentos)
+        print('\nRendimentos R$ %.2f' %rendimentos)
         
         ir = rendimentos * 15 / 100
         

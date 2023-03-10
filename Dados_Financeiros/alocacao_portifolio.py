@@ -47,14 +47,13 @@ class Alocacao_Otimizacao(object):
             
             retorno_carteira = np.log(self.dataset / self.dataset.shift(1))
             matriz_covariancia = retorno_carteira.cov()
-            
             self.dataset['Soma valor'] = self.dataset.sum(axis = 1)
             self.dataset['Taxa de retorno'] = 0.0
             
             for i in range(1, len(self.dataset)):
                 self.dataset['Taxa de retorno'][i] = np.log(self.dataset['Soma valor'][i] / self.dataset['Soma valor'][i - 1])
                 
-            #sharpe_ratio = (self.dataset['Taxa retorno'].mean() - self.sem_risco) / (self.dataset['Taxa retorno'].std() * np.sqrt(246))
+            sharpe_ratio = (self.dataset['Taxa retorno'].mean() - self.sem_risco) / (self.dataset['Taxa retorno'].std() * np.sqrt(246))
             retorno_esperado = np.sum(self.dataset['Taxa de retorno'].mean() * pesos) * 246
             volatilidade_esperada = np.sqrt(np.dot(pesos, np.dot(matriz_covariancia * 246, pesos)))
             sharpe_ratio = (retorno_esperado - self.sem_risco) / volatilidade_esperada
@@ -71,17 +70,17 @@ class Alocacao_Otimizacao(object):
             
             self.dataset = dataset_original.copy()
         print()
-        a = Alocacao_Ativos(pd.read_csv('acoesGerais.csv'), self.dinheiro_total, melhores_pesos = melhores_pesos)
+        a = Alocacao_Ativos(pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), self.dinheiro_total, melhores_pesos = melhores_pesos)
         acoes_pesos, soma_valor,_,_,_,_ = a.alocacao_ativos()
 
         print(acoes_pesos,'\n')
         print('soma_valor',soma_valor)
-#        print('Lista_sharpe_ratio ',Lista_sharpe_ratio)
+        print('Lista_sharpe_ratio ',Lista_sharpe_ratio)
 
         g = Portifolio(Lista_volatividade_esperada,Lista_retorno_esperado, melhor_volatilidade, melhor_retorno, c = Lista_sharpe_ratio)
         g.portifolio()
         
-        #print(melhor_sharpe_ratio)
+        print(melhor_sharpe_ratio)
         fim = time.time()
         print('\nTempo de execução Sharpe Ratio: ',(fim - ini) / 60)
 

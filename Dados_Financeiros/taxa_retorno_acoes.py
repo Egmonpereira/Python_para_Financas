@@ -11,7 +11,7 @@ class Taxa_Retorno_Acoes(object):
     
     def taxa_retorno_acoes(self):
         
-        dataset = pd.read_csv('acoesGerais.csv')
+        dataset = pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         
         for i in range(1,len(dataset.columns)):
             #Taxa de retorno simples é usada para comparar várias ações no mesmo período
@@ -43,7 +43,7 @@ class Taxa_Retorno_Acoes(object):
         for i in range(len(self.Lista)):
             print('RL ' + self.Lista_Aux[i],'\t= ',dataset['RL ' + self.Lista_Aux[i]].mean() * (246) * 100) #Taxa de retorno anual
 
-        dataset = pd.read_csv('acoesGerais.csv')
+        dataset = pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         dataset_normalizado = dataset.copy()
         
         for i in dataset_normalizado.columns[1:]:
@@ -66,7 +66,7 @@ class Taxa_Retorno_Acoes(object):
         Pesos_Carteira2 = np.array([0.1,0.2,0.2,0.2,0.1,0.2])
         print('Carteira com a BOVA',np.dot(retorno_anual * 100,Pesos_Carteira2))
         
-        dataset = pd.read_csv('acoesGerais.csv')
+        dataset = pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
         dataset_normalizado = dataset.copy()
         
         for i in dataset_normalizado.columns[1:]:

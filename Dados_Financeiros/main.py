@@ -26,13 +26,13 @@ if __name__ == '__main__':
 
     print('\n:::PRINCIPAL:::\n')
     try:       
-        with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
+        with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'r') as Data:
             data = Data.read()
         if data != str(date.today()):
             #s = 's'#input('Entrar com dados? S/N: ').lower()
             Lista, Lista_Aux, name, Sai = Dados('s').dados()
             a = AcoesGerais(Lista,Lista_Aux)
-            with open('/home/egmon/Yandex/Programação/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
+            with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
             print("Importando dados das Acoes\n ",Lista_Aux)
         else:
@@ -43,28 +43,28 @@ if __name__ == '__main__':
         print('Nenhuma Lista selecionada!')
     
     try:
+        print('\nTaxa de Retorno de Ações')
         b = Taxa_Retorno_Acoes(Lista, Lista_Aux)
-        print("\n\nExecutando Taxa Retorno Acoes:")
         dataset = b.taxa_retorno_acoes()
     except:
         print('Nenhuma Taxa calculada')
     
     try:
+        print('\nCálculo de Risco')
         c = Calculo_Risco(name,Sai)
-        print('\n\nExecutando Cálculo de Risco:')
         taxa_selic_historico = c.calculo_risco()
     except:
         print('Nenhum Risco calculado')
     
     try:
+        print('\nAlocação de Ativos')
         d = Alocacao_Ativos(dataset, 5000, 10)
-        print('\n\nExecutando Alocacao e Otimizacao:')
         acoes_pesos, soma_valor, dataset, desvio_padra_taxa_retorno, taxa_retorno_acum, sharpe_ratio_medio = d.alocacao_ativos()
 
         try:
             print('\nSharpe Ratio')
-            execs = 1#30#int(input('Número de Execuções: '))
-            e = Alocacao_Otimizacao(pandas.read_csv('Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100, execs)
+            execs = 30#int(input('Número de Execuções: '))
+            e = Alocacao_Otimizacao(pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100, execs)
             melhor_sharpe_ratio, melhores_pesos, Lista_retorno_esperado, Lista_volatividade_esperada, Lista_sharpe_ratio, melhor_volatilidade, melhor_retorno = e.alocacao_portifolio()
         except:
             print('Número de Execuções deve ser um número inteiro! ')
@@ -81,50 +81,54 @@ if __name__ == '__main__':
         print('Nenhuma Alocação executada')
     
     try:
-        f = Otimizacao_Portifolio(pandas.read_csv('acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100)
+        print('\nOtimização de Portifólio')
+        f = Otimizacao_Portifolio(pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100)
         print('\nOtimizacao Portifolio').otimizacao_portifolio()
     except:
         print('\nNenhuma Otimização de Portifólio executada')
 
     try:
-        Capm = Capm(Lista_Aux)
-        print('\nExecutando CAPM\n')
-        Capm.capm()
+        print('\nCAPM')
+        Capm(Lista_Aux).capm()
     except:
         print('Nenhuma CAPM executada')
 
     try:
-        pass
+        print('\nSimulação de Monte Carlo')
         S = Simulacao_Monte_Carlo(Lista, Lista_Aux, name).smc()
     except Exception as erro:
         print(erro)
         
     try:
-        pass
+        print('\nArima')
         A = Arima(Lista, Lista_Aux, name, Sai).arima()
     except Exception as erro:
         print(erro)
 
     try:
+        print('\nFaceBook Prophet')
         F = Fbprophet(Lista, Lista_Aux, name, Sai).facebookprophet()
     except Exception as erro:
         print(erro)
 
     try:
+        print('\nClassificação das Empresas')
         C = Classifica_Empresas().classifica_empresas()
     except Exception as erro:
         print(erro)
 
     try:
+        print('\nAgrupamento de Empresas')
         A = Agrupamento_Empresas().agrupamento_empresas()
     except Exception as erro:
         print(erro)
 
     try:
+        print('\nAnálise de Sentimentos')
         A = Analise_Sentimentos().analise_sentimentos()
     except Exception as erro:
         print(erro)
     fim = time.time()
 
-    with open('/home/egmon/Yandex/Programacao/Udemy/Python/Python_para_Financas/Bases_de_Dados/tempoExecucao.txt', 'w') as t:
+    with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/tempoExecucao.txt', 'w') as t:
         t.write(str('Tempo: %0.2f' %((fim - inicio)/60)))
