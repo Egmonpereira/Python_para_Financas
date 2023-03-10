@@ -9,6 +9,7 @@ from analise_sentimentos import Analise_Sentimentos
 from otimizacao_portifolio import Otimizacao_Portifolio
 from calculo_risco import Calculo_Risco
 from tratamento_classe import Tratamento_classe
+from pandas_datareader import data
 import time, pandas
 
 if __name__ == "__main__":
@@ -26,7 +27,7 @@ if __name__ == "__main__":
         if data != str(date.today()):
             #s = 's'#input('Entrar com dados? S/N: ').lower()
             Lista, Lista_Aux, name, Sai = Dados('s').dados()
-            a = AcoesGerais(Lista,Lista_Aux)
+            a = AcoesGerais(Lista,Lista_Aux).acoesGerais()  
             with open('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/Data.txt', 'w') as Data:
                 Data.write(str(date.today()))
             print("Importando dados das Acoes\n ",Lista_Aux)
@@ -50,7 +51,7 @@ if __name__ == "__main__":
     print('Linha 50 - Tempo estimnado: ')
     #Tratamento_classe().teste_fase()
     print('Linha 52 - Tempo estimnado: ')
-    c = Calculo_Risco(name,Sai)
+    c = Calculo_Risco(name,Sai) 
     taxa_selic_historico = c.calculo_risco()
     Otimizacao_Portifolio(pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv'), 5000, taxa_selic_historico.mean() / 100)
     AcoesGerais(Lista, Lista_Aux).acoesGerais()

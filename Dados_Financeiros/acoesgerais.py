@@ -1,7 +1,6 @@
 from pandas_datareader import data
 import seaborn as sns
-import pandas as pd 
-
+import pandas
 from graficos import Graficos 
 
 class AcoesGerais(object):
@@ -14,12 +13,17 @@ class AcoesGerais(object):
     
     def acoesGerais(self):
         print('\n:::AÇÕES GERAIS:::\n')
-        acoes_df = pd.DataFrame()
-
+        
         for i in self.Lista:
             #acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close']
-            print("Açoes Gerais i =",i)
-            acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01')['Close']
+            #print("Açoes Gerais i =",i)
+            try:
+                acoes_df = pandas.DataFrame(data.DataReader(f'GOLL4.SA', data_source = 'yahoo', start = '2015-01-01')['Close'])
+                #acoes_df = pd.DataFrame(data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close'])
+            except Exception as e:
+                print(e)
+        print(acoes_df)
+        print(acoes_df[0])
 
         print('não chega ',acoes_df)
         for i in range(len(self.Lista)):
