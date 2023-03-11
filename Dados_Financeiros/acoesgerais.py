@@ -1,6 +1,5 @@
 from pandas_datareader import data
-import seaborn as sns
-import pandas
+import seaborn, pandas, yfinance
 from graficos import Graficos 
 
 class AcoesGerais(object):
@@ -18,14 +17,13 @@ class AcoesGerais(object):
             #acoes_df[i] = data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close']
             #print("Açoes Gerais i =",i)
             try:
-                acoes_df = pandas.DataFrame(data.DataReader(f'GOLL4.SA', data_source = 'yahoo', start = '2015-01-01')['Close'])
+                acoes_df = pandas.DataFrame(data.DataReader(i, data_source = 'yahoo', start = '2015-01-01')['Close'])
                 #acoes_df = pd.DataFrame(data.DataReader(i, data_source = 'yahoo', start = '2015-01-01', end = '2020-11-03')['Close'])
             except Exception as e:
+                acoes_df = yfinance.Tickers(' '.join(self.Lista))
+                print('acoes_df',acoes_df)
                 print(e)
-        print(acoes_df)
-        print(acoes_df[0])
 
-        print('não chega ',acoes_df)
         for i in range(len(self.Lista)):
             acoes_df = acoes_df.rename(columns={self.Lista[i]: self.Lista_Aux[i]})
         
@@ -39,7 +37,7 @@ class AcoesGerais(object):
 #        sns.histplot(acoes_df['GOL'], kde=True)
 #        sns.boxplot(x = acoes_df['GOL'])
         
-        acoes_df = pd.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
+        acoes_df = pandas.read_csv('/home/egmon/Yandex/Acadêmico/Udemy/Python/Python_para_Financas/Bases_de_Dados/acoesGerais.csv')
 
         acoes_df_normalizado = acoes_df.copy()
         for i in acoes_df_normalizado.columns[1:]:

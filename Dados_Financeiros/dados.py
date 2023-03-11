@@ -63,9 +63,10 @@ class Dados(object):
             print('Escolha uma Lista:')
             print('Lista 1 = ',['GOL','CVC','WEGE','MAGALU','TOTS','BOVA'])
             print('Lista 2 = ',['TIM','VIVO','PETROBRAS','BBRASIL','CEMIG','VALE'])
-            print('Lista 3 = ',['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA'],'\n')
+            print('Lista 3 = ',['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA'])
+            print('Lista 4 = ',['AAPL.SA','AMZN.SA','GOOG.SA','META.SA','NFLX.SA','TSLA.SA'],'\n')
 
-            op = input('Lista 1 - 2 - 3: ').lower()
+            op = input('Lista 1 - 2 - 3 - 4: ').lower()
 
             if op == '1':
                 Lista = ['GOLL4.SA','CVCB3.SA','WEGE3.SA','MGLU3.SA','TOTS3.SA','BOVA11.SA']
@@ -79,12 +80,21 @@ class Dados(object):
                 print(Lista_Aux)
                 name = input('Nome da Ação a ser analisada: ').upper()
                 Sai = ['PETROBRAS','BBRASIL','CEMIG','VALE']
-            else:
+            elif op == '3':
                 Lista = ['ABEV3.SA','ODPV3.SA','VIVT3.SA','PETR3.SA','BBAS3.SA','BOVA11.SA']
                 Lista_Aux = ['AMBEV','ODONTOPREV','VIVO','PETROBRAS','BBRASIL','BOVA']
                 print(Lista_Aux)
                 name = input('Nome da Ação a ser analisada: ').upper()
                 Sai = ['VIVO','PETROBRAS','BBRASIL','BOVA']
+            elif op == '4':
+                Lista = ['AAPL.SA','AMZN.SA','GOOG.SA','META.SA','NFLX.SA','TSLA.SA']
+                Lista_Aux = ['AAPL','AMZN','GOOG','META','NFLX','TSLA']
+                print(Lista_Aux)
+                name = input('Nome da Ação a ser analisada: ').upper()
+                Sai = ['GOOG','META','NFLX','TSLA']
+            else:
+                print('Opção inválida!')
+    
             
         print('\nAções a serem analisadas = ', Lista_Aux)
         
